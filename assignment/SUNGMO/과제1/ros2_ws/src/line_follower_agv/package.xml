@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>line_follower_agv</name>
+  <version>0.1.0</version>
+  <description>라인트레이싱 운반 로봇(AGV) ROS2 패키지 — 센서·PID 제어·데이터 로깅·MQTT 전송</description>
+  <maintainer email="gsm9384@gmail.com">SUNGMO</maintainer>
+  <license>MIT</license>
+
+  <!-- 빌드/실행에 필요한 ROS2 클라이언트 라이브러리 및 메시지 -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
