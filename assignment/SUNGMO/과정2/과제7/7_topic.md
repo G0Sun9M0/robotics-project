@@ -77,9 +77,11 @@ Subscription count: 1
 
 ```
 $ ros2 topic echo /chatter
-data: 'Hello World: 12'
+data: 'Hello World: 121'
 ---
-data: 'Hello World: 13'
+data: 'Hello World: 122'
+---
+data: 'Hello World: 123'
 ---
 ```
 
