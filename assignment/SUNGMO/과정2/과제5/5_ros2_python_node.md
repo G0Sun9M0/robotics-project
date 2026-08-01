@@ -242,7 +242,7 @@ ros2 run my_robot_controller logging_node
 - **노드 이름이 정보 수준(`[INFO]`) 로그로 기록**되고, 프롬프트가 돌아오지 않은 채 **프로그램이 계속 실행 상태로 남는다**(`rclpy.spin`) — 목표한 두 동작 모두 확인.
 - 종료는 Ctrl+C.
 
-<!-- TODO: VM에서 실행 화면 캡처(5_run.png)를 이 폴더에 배치 -->
+![logging_node 실행 화면](5_run.png)
 
 ### 7-3. 교차 확인 — 다른 터미널에서
 
@@ -251,7 +251,7 @@ ros2 node list        # → /logging_node  (과제3의 노드 명령으로 등�
 ros2 topic echo /rosout   # 실행 순간의 info 로그가 토픽으로도 수집되는지 확인 (3-3의 ③)
 ```
 
-<!-- TODO: VM에서 ros2 node list 결과 캡처(5_node_list.png)를 이 폴더에 배치 -->
+![ros2 node list 결과](5_node_list.png)
 
 ---
 
@@ -276,8 +276,6 @@ ros2 topic echo /rosout   # 실행 순간의 info 로그가 토픽으로도 수�
 cd ~
 zip -r 5_ros2_ws.zip ros2_ws -x "ros2_ws/build/*" "ros2_ws/install/*" "ros2_ws/log/*"
 ```
-
-<!-- TODO: VM에서 만든 5_ros2_ws.zip 을 이 폴더에 배치 -->
 
 ---
 
