@@ -1,7 +1,7 @@
 # 과정2 · 과제8 — 퍼블리셔(게시자) · 파이썬으로 거북이 조종하기
 
 > **작성자** : SUNGMO  **작성일** : 2026-08-01
-> **산출물** : 본 문서(`8_publisher.md`) · 노드 소스(`circle_turtle.py`) · rqt_graph 이미지(`8_rqt_graph.png`) · 워크스페이스 압축(`8_ros2_ws.zip`)
+> **산출물** : 본 문서(`8_publisher.md`) · 노드 소스(`circle_turtle.py`) · 실행 이미지(`8_circle.png` · `8_rqt_graph.png`) · 워크스페이스 압축(`8_ros2_ws.zip`)
 > **실습 환경** : Apple Silicon Mac(M5 Pro) 위 UTM 가상머신 — **Ubuntu 22.04.5 LTS (arm64)** · bash 셸 · **ROS2 Humble** · 과제4~6의 `my_robot_controller` 패키지를 이어서 사용
 
 ---
@@ -231,6 +231,10 @@ ros2 run my_robot_controller circle_turtle
 
 **결과** : 거북이가 즉시 원을 그리며 계속 돈다. 키보드를 전혀 건드리지 않았는데도 움직인다 — teleop이 하던 게시자 역할을 내 노드가 대신했기 때문이다.
 
+![circle_turtle 실행 — 거북이가 그린 원](8_circle.png)
+
+화면에 남은 궤적이 닫힌 원을 이루는 것으로, 전진 속도와 회전 속도의 비(4-1)가 일정하게 유지되었음을 확인할 수 있다.
+
 ### 6-3. 확인 — 토픽 정보
 
 ```bash
@@ -274,7 +278,7 @@ rqt_graph
 **산출물**
 - 문서 : `과정2/과제8/8_publisher.md` (본 문서)
 - 소스 : `과정2/과제8/circle_turtle.py`
-- 이미지 : `8_rqt_graph.png`
+- 이미지 : `8_circle.png`(거북이가 그린 원) · `8_rqt_graph.png`(노드·토픽 그래프)
 - 압축 : `8_ros2_ws.zip` — 워크스페이스 디렉토리 압축(`src` 포함, `build/`·`install/`·`log/` 는 재생성되는 산출물이므로 제외)
 
 ```bash
