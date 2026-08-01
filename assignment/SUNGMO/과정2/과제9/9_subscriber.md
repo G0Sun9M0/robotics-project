@@ -1,7 +1,7 @@
 # 과정2 · 과제9 — 서브스크라이버(구독자) · 거북이의 상태를 읽는 노드
 
 > **작성자** : SUNGMO  **작성일** : 2026-08-01
-> **산출물** : 본 문서(`9_subscriber.md`) · 노드 소스(`turtle_pose.py`) · rqt_graph 이미지(`9_rqt_graph.png`) · 워크스페이스 압축(`9_ros2_ws.zip`)
+> **산출물** : 본 문서(`9_subscriber.md`) · 노드 소스(`turtle_pose.py`) · 실행 이미지(`9_pose_log.png` · `9_rqt_graph.png`) · 워크스페이스 압축(`9_ros2_ws.zip`)
 > **실습 환경** : Apple Silicon Mac(M5 Pro) 위 UTM 가상머신 — **Ubuntu 22.04.5 LTS (arm64)** · bash 셸 · **ROS2 Humble** · 과제4~8의 `my_robot_controller` 패키지를 이어서 사용
 
 ---
@@ -235,10 +235,16 @@ ros2 run my_robot_controller turtle_pose
 터미널 3에 거북이의 위치·방향이 변할 때마다 기록된다.
 
 ```
-[INFO] [...] [turtle_pose]: x: 5.54  y: 5.54  theta: 0.1
-[INFO] [...] [turtle_pose]: x: 5.74  y: 5.55  theta: 0.2
-[INFO] [...] [turtle_pose]: x: 5.93  y: 5.59  theta: 0.3
+[INFO] [1785552607.164825738] [turtle_pose]: x: 4.3   y: 1.97  theta: 2.49
+[INFO] [1785552607.181440061] [turtle_pose]: x: 4.27  y: 1.99  theta: 2.47
+[INFO] [1785552607.196746024] [turtle_pose]: x: 4.25  y: 2.01  theta: 2.45
+[INFO] [1785552607.213904759] [turtle_pose]: x: 4.22  y: 2.03  theta: 2.44
+[INFO] [1785552607.230890537] [turtle_pose]: x: 4.2   y: 2.05  theta: 2.42
 ```
+
+![turtle_pose 구독 로그 — 거북이의 좌표가 실시간으로 기록됨](9_pose_log.png)
+
+로그를 읽어 보면 **x 는 줄고 y 는 늘고 theta 는 줄어드는** 흐름이다 — 거북이가 원의 한 구간을 왼쪽 위 방향으로 돌고 있다는 뜻으로, circle_turtle 이 만든 원 운동이 좌표로 정확히 나타난다.
 
 - circle_turtle 이 원을 그리게 하므로 **x·y 값이 원의 궤적을 따라 오르내리고**, theta 는 계속 증가하다 한 바퀴(2π)를 돌면 −π 쪽으로 넘어간다.
 - **circle_turtle 을 Ctrl+C 로 끄면** 거북이가 멈추고, 값이 더 이상 변하지 않으므로 **turtle_pose 의 로그도 멈춘다** — "값이 바뀔 때마다"가 제대로 동작한다는 증거다.
@@ -248,6 +254,9 @@ ros2 run my_robot_controller turtle_pose
 ## 6. rqt_graph 로 구조 확인
 
 세 노드를 모두 실행한 상태에서 `rqt_graph` 를 **Nodes/Topics (active)** 모드로 확인한다.
+
+> **주의 — 그래프는 "지금 실행 중인" 노드만 그린다**
+> 처음 캡처했을 때 `/turtle_pose` 가 그래프에 없었다. 로그가 너무 빠르게 쌓여 잠시 노드를 꺼 둔 상태였기 때문이다. **Nodes/Topics (active)** 모드는 말 그대로 **활성 상태인 노드와 토픽만** 표시하므로, 그래프를 남기려면 **세 노드를 모두 켠 상태에서 리로드(↻)** 해야 한다.
 
 ```
 [/circle_turtle] ──▶ [/turtle1/cmd_vel] ──▶ [/turtlesim] ──▶ [/turtle1/pose] ──▶ [/turtle_pose]
@@ -278,7 +287,7 @@ ros2 run my_robot_controller turtle_pose
 **산출물**
 - 문서 : `과정2/과제9/9_subscriber.md` (본 문서)
 - 소스 : `과정2/과제9/turtle_pose.py`
-- 이미지 : `9_rqt_graph.png`
+- 이미지 : `9_pose_log.png`(구독 로그) · `9_rqt_graph.png`(노드·토픽 그래프)
 - 압축 : `9_ros2_ws.zip` — 워크스페이스 디렉토리 압축(`src` 포함, `build/`·`install/`·`log/` 제외)
 
 ```bash
